@@ -8,11 +8,8 @@ For Flask-Imgur to work properly you need `client_id` API key, see [Imgur API do
 
 ## Installation
 
-Install through pypi:
-
 ``` shell
 pip install Flask-Imgur
-
 ```
 
 
