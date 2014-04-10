@@ -54,15 +54,13 @@ Another thing you might wanna do is to delete the image, this requires `deleteha
 
 ## Reference:
 
-`Imgur` (class) -- Base class for handling Imgur interaction, contructor takes following arguments:
+* `Imgur` (class) -- Base class for handling Imgur interaction, contructor takes following arguments:
 
 `app` - Flask app object
 `client_id` (optional) -- Imgur client id
 `api` -- Api endpoint to by used, default one is: `https://api.imgur.com/3/image` (optional)
 
-
----
-`Imgur.send_image` (method) - Sends image via POST request. Available arguments:
+* `Imgur.send_image` (method) - Sends image via POST request. Available arguments:
 
 `image_data` (dict) -- dictionary containing image data to be sent to the server:
 `image` -- Werkzeug file object containing image, received through file upload (required)
@@ -70,9 +68,8 @@ Another thing you might wanna do is to delete the image, this requires `deleteha
 `description` -- image description (optional)
 `send_params` (dict) -- any additional parameters to be added to POST request (optional)
 `additional_headers` (dict) -- any headers you would like to add to request (optional)
----
 
-`Imgur.delete_image` (method) -- delete image. Available arguments:
+* `Imgur.delete_image` (method) -- delete image. Available arguments:
 `delete_hash` (string) -- unique string obtained when sending image to Imgur (required)
 `additional_headers` (dict) -- any additional headers to be added to request
 
