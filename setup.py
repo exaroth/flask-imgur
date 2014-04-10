@@ -4,7 +4,7 @@ Flask-Imgur
 
 
 This is simple flask extension allowing uploading
-images straight to Imgur image hosting serveice
+images straight to Imgur image hosting service.
 
 
 """
@@ -21,7 +21,8 @@ setup(
     author_email="exaroth@gmail.com",
     description="Upload images straight to Imgur",
     long_description=__doc__,
-    zip_safe=false,
+    zip_safe=False,
+    packages=["flask-imgur"],
     include_package_data=True,
     platforms="any",
     install_requires=["Flask", "six"],
