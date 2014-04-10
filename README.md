@@ -1,7 +1,5 @@
 ﻿# Flask-Imgur
 
-## Not usable yet dont download it
-
 A simple module implementing automatic image upload into Imgur file sharing service. Imgur does have rather big and convoluted API, this library is meant for those who simply want to upload and delete images from their service with no additional hassle. Compatible with Python 2.6+ and 3.x.
 
 For Flask-Imgur to work properly you need `client_id` API key, see [Imgur API documentation](https://api.imgur.com/) for information on how to obtain it.
@@ -11,10 +9,10 @@ For Flask-Imgur to work properly you need `client_id` API key, see [Imgur API do
 ## Usage:
 
 ``` python
+from flask import Flask
 from flask_imgur import Imgur
 
 app = Flask(__name__)
-
 imgur_handler = Imgur(app)
 ```
 
@@ -26,14 +24,9 @@ Then inside a function:
 def get_img():
 	if request.method == "POST":
 		image = request.files.get("my_image")
-		image_data = imgur_handler.send_image({
-				"image": image,
-				"name": "kittens" # optional
-				"description": "cute and cuddly" # optional
-				})
+		image_data = imgur_handler.send_image(image)
 
 		image_data["success"] # True
-		image_data["data"]["title"]  # "kittens"
 		image_data["data"]["height"] # 200
 		image_data["data"]["link"] # "http://imgur.com/SbBGk.jpg"
 		image_data["data"]["deletehash"] # "eYZd3NNJHsbreD1"
@@ -55,7 +48,7 @@ Another thing you might wanna do is to delete the image, this requires `deleteha
 
 Send Werkzeug file object containing image to Imgur.
 
-* image_data (dict) -- Dictionary containing image object aswell as optional title and description
+* image (image object) -- Werkzeug image object obtained through request.files dictionary (required)
 * send_params (dict) -- Any additional data to be added to POST request (optional)
 * additional_headers (dict) -- Additional headers to be passed along with request (optional)
 

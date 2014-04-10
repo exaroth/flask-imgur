@@ -38,39 +38,35 @@ class Imgur(object):
         headers.update(additional)
         return headers
 
-    def _build_send_request(self, image_data=dict(), params=dict()):
+    def _build_send_request(self, image=None, params=dict()):
 
         """
         Build request for sending an image
         """
+        
+        if not image:
+            raise Exception("Missing image object")
 
-        try:
-            img = image_data["image"]
-        except:
-            raise Exception("Missing image file")
-
-        b64 = base64.b64encode(img.read())
+        b64 = base64.b64encode(image.read())
 
         data = dict(
                 image = b64,
                 type = 'base64',
-                name = image_data.get("name", None),
-                description = image_data.get("description", None)
                 )
 
         data.update(params)
         return urllib.parse.urlencode(data).encode("utf-8")
 
-    def send_image(self, image_data, send_params=dict(), additional_headers=dict()):
+    def send_image(self, image, send_params=dict(), additional_headers=dict()):
         """
         Main handler for sending images
 
-            :params image_data -- dictionary containing image data to be sent
+            :params image -- Image object
             :params send_params -- additional info to be sent to imgur
             :params additional_headers -- additional headers to be added to request
         """
         req = urllib.request.Request(url = self._get_api(),
-                              data = self._build_send_request(image_data, params),
+                              data = self._build_send_request(image, send_params),
                               headers = self._add_authorization_header(additional_headers)
                              )
         data = urllib.request.urlopen(req)
