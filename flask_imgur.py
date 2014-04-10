@@ -68,6 +68,13 @@ class Imgur(object):
 
 
     def send_image(self, image_data, send_params=dict(), additional_headers=dict()):
+        """
+        Main handler for sending images
+
+            :params image_data -- dictionary containing image data to be sent
+            :params send_params -- additional info to be sent to imgur
+            :params additional_headers -- additional headers to be added to request
+        """
         req = urllib.request.Request(url = self._get_api(),
                               data = self._build_send_request(image_data, params),
                               headers = self._add_authorization_header(additional_headers)
@@ -75,10 +82,17 @@ class Imgur(object):
         data = urllib.request.urlopen(req)
         return json.loads(data.read().decode("utf-8"))
 
-    def delete_image(self, delete_hash, additional=dict()):
+    def delete_image(self, delete_hash, additional_headers=dict()):
+        """
+        Delete image from imgur
+
+            :params delete_hash -- string containing unique
+            image hash optained when sending an image
+            :params additional_headers -- aditional headers to be addd to request
+        """
         opener = urllib.request.build_opener(urllib.request.HTTPHandler)
         req = urllib.request.Request(url = self._get_api() + "/" + delete_hash,
-                              headers = self._add_authorization_header(additional))
+                              headers = self._add_authorization_header(additional_headers))
         req.get_method = lambda: "DELETE"
         data = urllib.request.urlopen(req)
         return json.loads(data.read().decode("utf-8"))
