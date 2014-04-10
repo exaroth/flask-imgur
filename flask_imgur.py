@@ -6,7 +6,7 @@ from six.moves import urllib
 
 
 
-class ImgurHandler(object):
+class Imgur(object):
 
     """
     Basic class for handling Imgur image upload,
