@@ -66,17 +66,17 @@ Another thing you might wanna do is to delete the image, this requires `deleteha
 
 * `Imgur.send_image` (method) - Sends image via POST request. Available arguments:
 
-- `image_data` (dict) -- dictionary containing image data to be sent to the server:
+`image_data` (dict) -- dictionary containing image data to be sent to the server:
 
 
-`image` -- Werkzeug file object containing image, received through file upload (required)
+	`image` -- Werkzeug file object containing image, received through file upload (required)
 
-`name` -- image name (optional)
+	`name` -- image name (optional)
 
-`description` -- image description (optional)
+	`description` -- image description (optional)
 
-- `send_params` (dict) -- any additional parameters to be added to POST request (optional)
-- `additional_headers` (dict) -- any headers you would like to add to request (optional)
+`send_params` (dict) -- any additional parameters to be added to POST request (optional)
+`additional_headers` (dict) -- any headers you would like to add to request (optional)
 
 * `Imgur.delete_image` (method) -- delete image. Available arguments:
 - `delete_hash` (string) -- unique string obtained when sending image to Imgur (required)
