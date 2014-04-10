@@ -1,6 +1,6 @@
 ﻿# Flask-Imgur
 
-A simple module implementing automatic image upload into Imgur file sharing service. Imgur does have rather big and convoluted API, this library is meant for those who simply want to upload and delete images from their service with no additional hassle. Compatible with Python 2.6+ and 3.x.
+A simple module implementing automatic image upload into Imgur image hosting service. Imgur does have rather big and convoluted API, this library is meant for those who simply want to upload and delete images from their service with no additional hassle. Compatible with Python 2.6+ and 3.x.
 
 For Flask-Imgur to work properly you need `client_id` API key, see [Imgur API documentation](https://api.imgur.com/) for information on how to obtain it.
 
