@@ -6,6 +6,17 @@ For Flask-Imgur to work properly you need `client_id` API key, see [Imgur API do
 
 `user id` can either be provided via Flask config file (with `IMGUR_ID` key) or passed during Imgur class initialization
 
+## Installation
+
+Install through pypi:
+
+``` shell
+pip install Flask-Imgur
+
+```
+
+
+
 ## Usage:
 
 ``` python
