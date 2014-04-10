@@ -9,26 +9,22 @@ from six.moves import urllib
 class Imgur(object):
 
     """
-    Basic class for handling Imgur image upload,
-    Accepts header containing user_id variable
-    and dictionary containing request configuration
+    Simple class for handling Imgur image upload, and deletion
     """
+
 
     API_URL = "https://api.imgur.com/3/image"
 
-    def __init__(self, app=None, client_id=None , config=dict()):
+    def __init__(self, app=None, client_id=None, **kwargs):
         
         if not client_id and not app.config.get("IMGUR_ID", None):
             raise Exception("Missing client id")
         self.client_id = client_id or app.config.get("IMGUR_ID")
-        self.config = config
-        if 'api' in self.config:
-            self.API_URL = self.config['api']
-
+        if 'api' in kwargs:
+            self.API_URL = kwargs["api"]
 
     def _get_api(self):
         return self.API_URL
-
 
     def _add_authorization_header(self, additional = dict()):
 
@@ -41,7 +37,6 @@ class Imgur(object):
         )
         headers.update(additional)
         return headers
-
 
     def _build_send_request(self, image_data=dict(), params=dict()):
 
@@ -65,7 +60,6 @@ class Imgur(object):
 
         data.update(params)
         return urllib.parse.urlencode(data).encode("utf-8")
-
 
     def send_image(self, image_data, send_params=dict(), additional_headers=dict()):
         """

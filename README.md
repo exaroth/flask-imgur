@@ -6,7 +6,7 @@ A simple module implementing automatic image upload into Imgur file sharing serv
 
 For Flask-Imgur to work properly you need `client_id` API key optainable
 
-`user id` can either be provided via adding it into Flask config file (via `IMGUR_ID` key) or passed during Imgur class initialization
+`user id` can either be provided via Flask config file (with `IMGUR_ID` key) or passed during Imgur class initialization
 
 
 Usage:
@@ -43,7 +43,7 @@ def get_img():
 Refer to [Official model reference](https://api.imgur.com/models/image) for info about available fields.
 
 
-Another thing you might wanna do is to delete the image, this requires `deletehash` created when image hash been uploaded. Example
+Another thing you might wanna do is to delete the image, this requires `deletehash` created when image been uploaded. Example:
 
 ``` python
 	delete_info = imgur_handler.delete_image(delete_hash="eYZd3NNJHsbreD1")
@@ -52,10 +52,26 @@ Another thing you might wanna do is to delete the image, this requires `deleteha
 
 
 
-## Api reference
+## Reference:
 
-Imgur class exposes 2 public methods:
+`Imgur` (class) -- Base class for handling Imgur interaction, contructor takes following arguments:
 
-send_image()
+	`app` - Flask app object
+	`client_id` (optional) -- Imgur client id
+	`api` -- Api endpoint to by used, default one is: `https://api.imgur.com/3/image` (optional)
 
+
+`Imgur.send_image` (method) - Sends image via POST request. Available arguments:
+
+	`image_data` (dict) -- dictionary containing image data to be sent to the server:
+			`image` -- Werkzeug file object containing image, received through file upload (required)
+			`name` -- image name (optional)
+			`description` -- image description (optional)
+
+	`send_params` (dict) -- any additional parameters to be added to POST request (optional)
+	`additional_headers` (dict) -- any headers you would like to add to request (optional)
+
+`Imgur.delete_image` (method) -- delete image. Available arguments:
+	`delete_hash` (string) -- unique string obtained when sending image to Imgur (required)
+	`additional_headers` (dict) -- any additional headers to be added to request
 
