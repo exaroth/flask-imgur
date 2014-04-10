@@ -8,8 +8,7 @@ For Flask-Imgur to work properly you need `client_id` API key optainable
 
 `user id` can either be provided via Flask config file (with `IMGUR_ID` key) or passed during Imgur class initialization
 
-
-Usage:
+## Usage:
 
 ``` python
 from flask_imgur import Imgur
@@ -50,8 +49,9 @@ Another thing you might wanna do is to delete the image, this requires `deleteha
 	delete_info["success"] # True
 ```
 
+## Reference
 
-#### send_image(image_data, send_params, additionale_headers)
+##### send_image(image_data, send_params, additionale_headers)
 
 Send Werkzeug file object containing image into imgut
 
@@ -59,7 +59,7 @@ Send Werkzeug file object containing image into imgut
 * send_params (dict) -- Any additional data to be added to POST request (optional)
 * additional_headers (dict) -- Additional headers to be passed along with request (optional)
 
-#### delete_image(delete_hash, additional_headers)
+##### delete_image(delete_hash, additional_headers)
 
 Delete the image
 
