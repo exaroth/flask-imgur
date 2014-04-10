@@ -44,7 +44,7 @@ Another thing you might wanna do is to delete the image, this requires `deleteha
 
 ## Reference
 
-##### send_image(image_data, send_params, additional_headers)
+##### send_image(image, send_params, additional_headers)
 
 Send Werkzeug file object containing image to Imgur.
 
