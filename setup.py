@@ -25,7 +25,7 @@ setup(
     packages=["flask-imgur"],
     include_package_data=True,
     platforms="any",
-    install_requires=["Flask", "six"],
+    install_requires=["Flask", "six >= 1.7.3"],
     classifiers=[
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
