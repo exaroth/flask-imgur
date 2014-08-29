@@ -22,6 +22,8 @@ from flask import Flask
 from flask_imgur import Imgur
 
 app = Flask(__name__)
+app.config["IMGUR_ID"] = "<your imgur id>"
+
 imgur_handler = Imgur(app)
 ```
 
