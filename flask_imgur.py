@@ -5,18 +5,20 @@ import json
 from six.moves import urllib
 
 
-
 class Imgur(object):
 
     """
     Simple class for handling Imgur image upload, and deletion
     """
 
-
     API_URL = "https://api.imgur.com/3/image"
 
     def __init__(self, app=None, client_id=None, **kwargs):
-        
+        self.client_id = client_id
+        if app is not None:
+            self.init_app(app, client_id, **kwargs)
+
+    def init_app(self, app, client_id=None, **kwargs):
         if not client_id and not app.config.get("IMGUR_ID", None):
             raise Exception("Missing client id")
         self.client_id = client_id or app.config.get("IMGUR_ID")
@@ -26,7 +28,7 @@ class Imgur(object):
     def _get_api(self):
         return self.API_URL
 
-    def _add_authorization_header(self, additional = dict()):
+    def _add_authorization_header(self, additional=dict()):
 
         """
         Builds authorization headers for anonymous users
